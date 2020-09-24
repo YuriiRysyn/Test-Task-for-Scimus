@@ -1,0 +1,280 @@
+// Write your styles here
+
+// reset some default styles
+body,
+ul,
+li,
+a,
+h1,
+h2,
+h3,
+p,
+input {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+// mixins 
+@mixin btn-learn-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 200px;
+  background-color: $btn-color;
+  border: none;
+  color: $white-text-color;
+  text-transform: uppercase;
+  font-family: $typical-font-family;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@mixin properties-for-headlines {
+  text-transform: uppercase;
+  font-family: $typical-font-family;
+  font-size: $font-size-for-headlines;
+}
+
+.header {
+  display: grid;
+  grid-template-areas: 
+  "a"
+  "b"
+  "c";
+  grid-template-rows: auto 7% 50%;
+  justify-items: center;
+  height: 100vh;
+  width: 100%;
+
+  background: url(../img/header_background_v1.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  &__logo {
+    width: 16%;
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__top {
+    grid-area: "a";
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__title {
+    grid-area: "b";
+    color: $white-text-color;
+    @include properties-for-headlines;
+  }
+
+  &__btn {
+    grid-area: "c";
+    @include btn-learn-more;
+  }
+}
+
+.nav {
+  &__list {
+    display: flex;
+    font-family: $typical-font-family;
+    font-size: $normal-font-size;
+    font-weight: 600;
+  }
+
+  &__item {
+    text-align: center;
+    text-transform: uppercase;
+    border-right: 2px solid #507689;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    min-width: $width-for-nav-link;
+    padding: $padding-for-nav-link;
+    color: $white-text-color;
+  }
+}
+
+.main {
+  max-width: $width-for-content;
+  margin: 0 auto;
+  padding: 20px;
+
+  &__toolbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__search-input {
+    min-height: 25px;
+    padding: 5px;
+    padding-left: 20px;
+
+    &::placeholder {
+      color: #000;
+    }
+  }
+
+  &__title {
+    margin-top: 15px;
+    text-align: end;
+    @include properties-for-headlines;
+  }
+}
+
+.article {
+  display: flex;
+  padding: $padding-for-article;
+  margin-bottom: 20px;
+  background-color: $bg-color-for-artcile;
+
+  &__post {
+    display: grid;
+    grid-template-areas: 
+    "a"
+    "b"
+    "c"
+    "d";
+    grid-template-rows: min-content min-content min-content auto;
+    padding: $padding-for-article;
+    font-size: $normal-font-size;
+    font-family: $typical-font-family;
+  }
+
+  &__post-date {
+    grid-area: "a";
+    color: #f00;
+    position: relative;
+    padding-bottom: $padding-for-article;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #b7c6cc;
+    }
+  }
+
+  &__post-headline {
+    grid-area: "b";
+    padding: 5px 0;
+    text-transform: uppercase;
+    color: $btn-color;
+  }
+
+  &__post-description {
+    grid-area: "c";
+    line-height: $line-heigh-for-main-text;
+  }
+
+  &__post-btn {
+    grid-area: "d";
+    @include btn-learn-more;
+    align-self: center;
+    justify-self: end;
+  }
+}
+
+.about-us {
+  margin-top: $vertical-space-between-sections;
+
+  &__title{
+    @include properties-for-headlines;
+    text-align: end;
+  }
+
+  &__text {
+    line-height: $line-heigh-for-main-text;
+    font-family: $typical-font-family;
+    font-size: $normal-font-size;
+  }
+
+  &__img {
+    width: 100%;
+    margin: 20px 0;
+  }
+}
+
+.contact-form {
+  margin-top: $vertical-space-between-sections;
+  text-align: end;
+
+  &__title {
+    @include properties-for-headlines;
+  }
+
+  &__description {
+    @include properties-for-headlines;
+    font-size: $normal-font-size;
+  }
+}
+
+.form {
+  margin: 20px 0;
+  font-size: $normal-font-size;
+  font-family: $typical-font-family;
+  line-height: $line-heigh-for-main-text;
+  color: $btn-color;
+
+  &__user-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+
+  }
+
+  &__cell {
+    &--user-name {
+      margin-right: 5px;
+    }
+
+    &--user-email {
+      margin-left: 5px;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: 40px;
+  }
+
+  &__text-field {
+    margin-bottom: 20px;
+
+    &--body {
+      width: 100%;
+      height: 100px;
+      resize: none;
+    }
+  }
+
+  &__submit {
+    @include btn-learn-more;
+    display: inline-block;
+  }
+}
+
+.footer {
+  padding: 20px;
+  font-size: $normal-font-size;
+  font-family: $typical-font-family;
+}
